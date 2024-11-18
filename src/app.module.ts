@@ -1,12 +1,16 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { UsersModule } from './users/users.module';
-import { AuthModule } from './auth/auth.module';
+import { MongooseModule } from '@nestjs/mongoose';
+import config from './configs/keys';
+import { UserModule } from './users/users.module';
+// import { FlightModule } from './flight/flight.module';
+// import { BookingModule } from './booking/booking.module';
 
 @Module({
-  imports: [UsersModule, AuthModule],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    MongooseModule.forRoot(config.mongoURI),
+    UserModule,
+    // FlightModule,
+    // BookingModule,
+  ],
 })
 export class AppModule {}
