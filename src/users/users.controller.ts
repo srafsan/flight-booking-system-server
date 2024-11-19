@@ -3,6 +3,7 @@ import { UserService } from './users.service';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
 import { UserDocument } from './schemas/user.schema';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Controller('api')
 export class UserController {
@@ -12,8 +13,8 @@ export class UserController {
   ) {}
 
   @Post('register')
-  async register(@Body() body: any) {
-    const { username, email, password } = body;
+  async register(@Body() createUserDto: CreateUserDto) {
+    const { username, email, password } = createUserDto;
     const user = await this.userService.createUser(username, email, password);
     return { message: 'User registered successfully', user };
   }
