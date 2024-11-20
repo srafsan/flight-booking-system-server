@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
+import { JWT_SECRET } from 'src/configs/jwt-secrets';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -20,7 +21,8 @@ export class AuthGuard implements CanActivate {
     }
 
     try {
-      const payload = this.jwtService.verify(token, { secret: 'secretKey' });
+      const payload = this.jwtService.verify(token, { secret: JWT_SECRET });
+      console.log(payload);
       request['user'] = payload;
     } catch {
       throw new UnauthorizedException('Invalid token');
