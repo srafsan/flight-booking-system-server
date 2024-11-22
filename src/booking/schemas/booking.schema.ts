@@ -14,7 +14,7 @@ export class Booking {
   @Prop({ required: true })
   numberOfSeats: number;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   totalPrice: number;
 
   @Prop({ default: 'Pending' })

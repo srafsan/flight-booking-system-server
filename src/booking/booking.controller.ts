@@ -25,7 +25,7 @@ export class BookingController {
   }
 
   @Get('user/:id')
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   async getUserBookings(@Param('id') userId: string) {
     return this.bookingService.getUserBookings(userId);
   }

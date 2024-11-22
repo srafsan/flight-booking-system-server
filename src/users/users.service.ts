@@ -12,6 +12,10 @@ export class UserService {
     return this.userModel.find().exec();
   }
 
+  async getOneUser(id: string): Promise<User[]> {
+    return this.userModel.find({ _id: id }).exec();
+  }
+
   async createUser(
     username: string,
     email: string,

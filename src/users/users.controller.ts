@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param } from '@nestjs/common';
 import { UserService } from './users.service';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
@@ -15,6 +15,11 @@ export class UserController {
   @Get('users')
   async getAllUsers() {
     return this.userService.getAllUsers();
+  }
+
+  @Get('users/:id')
+  async getOneUser(@Param('id') id: string) {
+    return this.userService.getOneUser(id);
   }
 
   @Post('register')
