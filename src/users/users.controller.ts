@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get } from '@nestjs/common';
 import { UserService } from './users.service';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
@@ -11,6 +11,11 @@ export class UserController {
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
   ) {}
+
+  @Get('users')
+  async getAllUsers() {
+    return this.userService.getAllUsers();
+  }
 
   @Post('register')
   async register(@Body() createUserDto: CreateUserDto) {

@@ -8,6 +8,10 @@ import * as bcrypt from 'bcryptjs';
 export class UserService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
+  async getAllUsers(): Promise<User[]> {
+    return this.userModel.find().exec();
+  }
+
   async createUser(
     username: string,
     email: string,

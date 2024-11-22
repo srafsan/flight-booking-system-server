@@ -31,8 +31,6 @@ export class BookingController {
   }
 
   @Get()
-  @UseGuards(AuthGuard, RolesGuard)
-  @Roles('Admin')
   async getAllBookings() {
     return this.bookingService.getAllBookings();
   }
